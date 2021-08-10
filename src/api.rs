@@ -240,9 +240,9 @@ pub struct Current {
     /// Time of data calculation, unix, UTC
     pub dt: i64,
     /// Sunrise time, unix, UTC
-    pub sunrise: i64,
+    pub sunrise: Option<i64>,
     /// Sunset time, unix, UTC
-    pub sunset: i64,
+    pub sunset: Option<i64>,
     /// Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
     pub temp: f64,
     /// Temperature. This temperature parameter accounts for the human perception of weather.
