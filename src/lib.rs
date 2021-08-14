@@ -51,7 +51,15 @@ pub const LOADING: &str = "loading...";
 ///     pub type Receiver = std::sync::mpsc::Receiver<Result<openweathermap::CurrentWeather, String>>;
 ///    ```
 
-pub fn inittimemachine(latitude: &f64, longitude: &f64, unix_timestamp: &i64, units: &str, lang: &str, api_key: &str, poll_mins: u64) -> ReceiverTimemachine {
+pub fn inittimemachine(
+    latitude: &f64,
+    longitude: &f64,
+    unix_timestamp: &i64,
+    units: &str,
+    lang: &str,
+    api_key: &str,
+    poll_mins: u64,
+) -> ReceiverTimemachine {
     let url = format!("http://api.openweathermap.org/data/2.5/onecall/timemachine?lat={}&lon={}&dt={}&units={}&lang={}&appid={}",
         latitude, longitude, unix_timestamp, units, lang, api_key );
     // fork thread that continuously fetches weather updates every <poll_mins> minutes
@@ -82,9 +90,18 @@ pub fn inittimemachine(latitude: &f64, longitude: &f64, unix_timestamp: &i64, un
     return rx;
 }
 
-pub fn initonecall(latitude: &f64, longitude: &f64, units: &str, lang: &str, api_key: &str, poll_mins: u64) -> ReceiverOneCall {
-    let url = format!("http://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&units={}&lang={}&appid={}",
-        latitude, longitude, units, lang, api_key );
+pub fn initonecall(
+    latitude: &f64,
+    longitude: &f64,
+    units: &str,
+    lang: &str,
+    api_key: &str,
+    poll_mins: u64,
+) -> ReceiverOneCall {
+    let url = format!(
+        "http://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&units={}&lang={}&appid={}",
+        latitude, longitude, units, lang, api_key
+    );
     // fork thread that continuously fetches weather updates every <poll_mins> minutes
     let period = Duration::from_secs(60 * poll_mins);
     let (tx, rx) = mpsc::channel();
@@ -113,7 +130,13 @@ pub fn initonecall(latitude: &f64, longitude: &f64, units: &str, lang: &str, api
     return rx;
 }
 
-pub fn initweather(location: &str, units: &str, lang: &str, api_key: &str, poll_mins: u64) -> ReceiverWeather {
+pub fn initweather(
+    location: &str,
+    units: &str,
+    lang: &str,
+    api_key: &str,
+    poll_mins: u64,
+) -> ReceiverWeather {
     // generate correct request URL depending on city is id or name
     let url = match location.parse::<u64>().is_ok() {
         true => format!(
@@ -338,6 +361,13 @@ pub mod blocking {
         api_key: &str,
     ) -> Result<TimeMachine, String> {
         // wait for result
-        executor::block_on(super::timemachine(latitude, longitude, unix_timestamp, units, lang, api_key))
-    }    
+        executor::block_on(super::timemachine(
+            latitude,
+            longitude,
+            unix_timestamp,
+            units,
+            lang,
+            api_key,
+        ))
+    }
 }

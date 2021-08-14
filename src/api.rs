@@ -120,13 +120,13 @@ pub struct Hour {
     /// Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
     pub wind_speed: f64,
     /// Wind direction, degrees (meteorological)
-    pub wind_deg: f64, 
+    pub wind_deg: f64,
     /// Wind gust. Unit Default: metre/sec, metric: metre/sec, imperial: miles/hour.
-    pub wind_gust: Option<f64>,    
+    pub wind_gust: Option<f64>,
     /// vector with one item of weather condition descriptions
     pub weather: Vec<Weather>,
-    // Probability of precipitation    
-    pub pop: Option<f64>, 
+    // Probability of precipitation
+    pub pop: Option<f64>,
     // Rain volume for last hour, mm
     pub rain: Option<Volume>,
     // Snow volume for last hour, mm
@@ -138,15 +138,15 @@ pub struct DailyTemp {
     /// Morning temperature.
     pub morn: f64,
     /// Day temperature.
-    pub day: f64,  
+    pub day: f64,
     /// Evening temperature.
-    pub eve: f64,  
+    pub eve: f64,
     /// Night temperature.
-    pub night: f64,  
+    pub night: f64,
     /// Min daily temperature.
     pub min: f64,
     /// Max daily temperature.
-    pub max: f64,  
+    pub max: f64,
 }
 
 #[derive(Deserialize, Debug)]
@@ -154,11 +154,11 @@ pub struct DailyFeelsLike {
     /// Morning temperature.
     pub morn: f64,
     /// Day temperature.
-    pub day: f64,  
+    pub day: f64,
     /// Evening temperature.
-    pub eve: f64,  
+    pub eve: f64,
     /// Night temperature.
-    pub night: f64,  
+    pub night: f64,
 }
 
 #[derive(Deserialize, Debug)]
@@ -174,9 +174,9 @@ pub struct Day {
     pub moonrise: i64,
     /// The time of when the moon sets for this day, Unix, UTC
     pub moonset: i64,
-    ///  Moon phase. 0 and 1 are 'new moon', 0.25 is 'first quarter moon', 
+    ///  Moon phase. 0 and 1 are 'new moon', 0.25 is 'first quarter moon',
     ///  0.5 is 'full moon' and 0.75 is 'last quarter moon'.
-    pub moon_phase: f64,    
+    pub moon_phase: f64,
     /// Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
     pub temp: DailyTemp,
     /// Temperature. This temperature parameter accounts for the human perception of weather.
@@ -195,13 +195,13 @@ pub struct Day {
     /// Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
     pub wind_speed: f64,
     /// Wind direction, degrees (meteorological)
-    pub wind_deg: f64, 
+    pub wind_deg: f64,
     /// Wind gust. Unit Default: metre/sec, metric: metre/sec, imperial: miles/hour.
-    pub wind_gust: Option<f64>,    
+    pub wind_gust: Option<f64>,
     /// vector with one item of weather condition descriptions
     pub weather: Vec<Weather>,
-    // Probability of precipitation    
-    pub pop: f64, 
+    // Probability of precipitation
+    pub pop: f64,
     // Precipitation volume, mm
     pub rain: Option<f64>,
     // Snow volume, mm
@@ -214,7 +214,7 @@ pub struct Minute {
     /// Time of data calculation, unix, UTC
     pub dt: i64,
     //Precipitation volume, mm
-    pub precipitation: Option<f64>
+    pub precipitation: Option<f64>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -229,9 +229,9 @@ pub struct Alert {
     /// Date and time of the end of the alert, Unix, UTC
     pub end: i64,
     /// Description of the alert.
-    pub description: String,        
+    pub description: String,
     /// Type of severe weather
-    pub tags: Vec<String>
+    pub tags: Vec<String>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -263,9 +263,9 @@ pub struct Current {
     /// Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
     pub wind_speed: f64,
     /// Wind direction, degrees (meteorological)
-    pub wind_deg: f64, 
+    pub wind_deg: f64,
     /// Wind gust. Unit Default: metre/sec, metric: metre/sec, imperial: miles/hour.
-    pub wind_gust: Option<f64>,    
+    pub wind_gust: Option<f64>,
     /// vector with one item of weather condition descriptions
     pub weather: Vec<Weather>,
     //Rain volume for last hour, mm
@@ -311,7 +311,7 @@ pub struct OneCall {
     /// Daily forecast weather
     pub daily: Option<Vec<Day>>,
     /// National weather alerts data from major national weather warning systems
-    pub alerts: Option<Vec<Alert>>
+    pub alerts: Option<Vec<Alert>>,
 }
 
 #[derive(Deserialize, Debug)]

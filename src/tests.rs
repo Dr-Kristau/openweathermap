@@ -1,7 +1,7 @@
 // Note this useful idiom: importing names from outer (for mod tests) scope.
 use super::*;
+use chrono::{Duration, TimeZone, Utc};
 use rand::{thread_rng, Rng};
-use chrono::{Utc, Duration, TimeZone};
 
 fn apikey() -> String {
     match std::env::var("OWM_APIKEY") {
@@ -37,7 +37,15 @@ fn test_timemachine_time() {
     let now = Utc::now();
     let yesterday = now.checked_sub_signed(Duration::days(1)).unwrap();
     let yesterday_unix = yesterday.timestamp();
-    let w = blocking::timemachine(&41.383333, &2.183333, &yesterday_unix, "metric", "en", &apikey()).unwrap();
+    let w = blocking::timemachine(
+        &41.383333,
+        &2.183333,
+        &yesterday_unix,
+        "metric",
+        "en",
+        &apikey(),
+    )
+    .unwrap();
     let hourly = w.hourly.first().unwrap();
 
     assert_eq!(Utc.timestamp(w.current.dt, 0).date(), yesterday.date());
@@ -60,7 +68,6 @@ fn test_onecall_coordinate() {
     assert_eq!(w.lat, lat);
     assert_eq!(w.lon, lon);
 }
-
 
 #[test]
 fn test_language() {
@@ -94,7 +101,6 @@ fn test_cities() {
         assert_eq!(w.id, city);
     }
 }
-
 
 // this is a list of city IDs
 // (generated from https://bulk.openweathermap.org/sample/current.city.list.min.json.gz)
